@@ -1,0 +1,14 @@
+[
+  {
+    "bundle_identifiers": [
+      "^dev\\.zed\\.Zed$",
+      "^com\\.apple\\.Terminal$",
+      "^com\\.googlecode\\.iterm2$",
+      "^com\\.github\\.wez\\.wezterm$",
+      "^org\\.alacritty$",
+      "^net\\.kovidgoyal\\.kitty$",
+      "^org\\.gnu\\.Emacs$"
+    ],
+    "type": "frontmost_application_unless"
+  }
+]
