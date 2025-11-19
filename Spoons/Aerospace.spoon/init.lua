@@ -23,12 +23,16 @@ local function onLayoutChanged()
 	end
 end
 
--- Attach to input source change event
-hs.keycodes.inputSourceChanged(onLayoutChanged)
+local M = {}
+function M:init()
+	-- Attach to input source change event
+	hs.keycodes.inputSourceChanged(onLayoutChanged)
 
-hs.hotkey.bind({ "cmd", "alt" }, "C", function()
-	local win = hs.window.focusedWindow()
-	if win then
-		win:centerOnScreen()
-	end
-end)
+	hs.hotkey.bind({ "cmd", "alt" }, "C", function()
+		local win = hs.window.focusedWindow()
+		if win then
+			win:centerOnScreen()
+		end
+	end)
+end
+return M
