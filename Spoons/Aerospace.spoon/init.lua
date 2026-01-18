@@ -14,25 +14,21 @@ local function rebuildAeroConfig(layout)
 	hs.execute("/opt/homebrew/bin/aerospace reload-config")
 end
 
-local function onLayoutChanged()
-	local layoutId = hs.keycodes.currentSourceID()
-	if layoutId:find("Dvorak") then
-		rebuildAeroConfig("dvorak")
-	else
-		rebuildAeroConfig("qwerty")
-	end
-end
-
 local M = {}
 function M:init()
 	-- Attach to input source change event
-	hs.keycodes.inputSourceChanged(onLayoutChanged)
+	hs.keycodes.inputSourceChanged(function()
+		local layout = hs.keycodes.currentSourceID():find("Dvorak") and "dvorak" or "qwerty"
+		rebuildAeroConfig(layout)
 
-	hs.hotkey.bind({ "cmd", "alt" }, "C", function()
-		local win = hs.window.focusedWindow()
-		if win then
-			win:centerOnScreen()
-		end
+		-- Rebind key has to happen on every layout change, otherwise it will stick on the same physical key
+		hs.hotkey.disableAll({ "cmd", "alt" }, "i")
+		hs.hotkey.bind({ "cmd", "alt" }, "c", function()
+			local win = hs.window.focusedWindow()
+			if win then
+				win:centerOnScreen()
+			end
+		end)
 	end)
 end
 return M
