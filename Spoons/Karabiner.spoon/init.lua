@@ -1,9 +1,5 @@
 local M = {}
-function M:init()
-	M:rebuildConfig()
-	-- Attach to input source change event
-	hs.keycodes.inputSourceChanged(M.rebuildConfig)
-end
+function M:init() end
 
 local function copy_list(t)
 	local out = {}
@@ -32,7 +28,8 @@ local function deep_copy(orig, seen)
 	return setmetatable(copy, getmetatable(orig))
 end
 
-function M:rebuildConfig()
+function M:run()
+	print("[Debug] Rebuliding Karabiner Config...")
 	local layout = hs.keycodes.currentSourceID():find("Dvorak") and "dvorak" or "qwerty"
 
 	-- Rebuild karabiner.json for both layouts
@@ -118,7 +115,7 @@ function M:rebuildConfig()
 			for _, binding in ipairs(mr.bindings) do
 				table.insert(rule.manipulators, {
 					type = "basic",
-					conditions = rule.shared_conditions,
+					conditions = mr.shared_conditions,
 					from = create_key_binding("from", { binding.from }, l)[1],
 					to = create_key_binding("to", binding.to, l),
 				})
@@ -126,7 +123,7 @@ function M:rebuildConfig()
 					-- Add shift version for selection
 					table.insert(rule.manipulators, {
 						type = "basic",
-						conditions = rule.shared_conditions,
+						conditions = mr.shared_conditions,
 						from = create_key_binding("from", { binding.from }, l, { "shift" })[1],
 						to = create_key_binding("to", binding.to, l, { "shift" }),
 					})
