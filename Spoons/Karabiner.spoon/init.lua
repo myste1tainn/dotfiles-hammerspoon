@@ -87,7 +87,7 @@ function M:run()
 	local profile = { qwerty = prof, dvorak = deep_copy(prof) }
 	profile.qwerty.name = "QWERTY Generated Profile"
 	profile.dvorak.name = "DVORAK Generated Profile"
-	local qwerty_to_dvorak_map = dofile(hs.spoons.resourcePath("helpers/qwerty_to_dvorak_map.lua"))
+	local qwerty_to_dvorak_map = dofile(hs.spoons.resourcePath("helpers/dvorak_to_qwerty_map.lua"))
 	local function create_key_binding(t, ks, l, mod)
 		local result = {}
 		for _, k in ipairs(ks) do
