@@ -7,8 +7,12 @@
       "^com\\.github\\.wez\\.wezterm$",
       "^org\\.alacritty$",
       "^net\\.kovidgoyal\\.kitty$",
-      "^org\\.gnu\\.Emacs$"
+      "^org\\.gnu\\.Emacs$",
+      "^com\\.neovide\\.neovide$",
+      "^com\\.cmuxterm\\.app\\.web$",
+      "^com\\.cmuxterm\\.app$"
     ],
+    "file_paths": ["/opt/homebrew/bin/neovide"],
     "type": "frontmost_application_unless"
   }
 ]

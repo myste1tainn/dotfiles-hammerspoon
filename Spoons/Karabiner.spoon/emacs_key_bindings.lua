@@ -10,7 +10,11 @@ return {
 				"^org\\.alacritty$",
 				"^net\\.kovidgoyal\\.kitty$",
 				"^org\\.gnu\\.Emacs$",
+				"^com\\.neovide\\.neovide$",
+				"^com\\.cmuxterm\\.app\\.web$",
+				"^com\\.cmuxterm\\.app$",
 			},
+			file_paths = { "/opt/homebrew/bin/neovide" },
 			type = "frontmost_application_unless",
 		},
 	},
@@ -92,8 +96,9 @@ return {
 			kind = "editing",
 			from = { "w", { "control" } },
 			-- This won't work in MS Excel, so we cheat a bit instead
-			-- to = { { "delete_or_backspace", { "option" } } },
-			to = { { "left_arrow", { "shift", "option" } }, { "delete_or_backspace" } },
+			to = { { "delete_or_backspace", { "option" } } },
+			-- This won't work in Chrome
+			-- to = { { "left_arrow", { "shift", "option" } }, { "delete_or_backspace" } },
 		},
 		{
 			kind = "editing",
